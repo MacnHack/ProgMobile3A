@@ -41,25 +41,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        showList();
         makeApiCall();
     }
 
-    private void showList() {
+    private void showList(List<Pokemon> pokemonList) {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        // use this setting to
-        // improve performance if you know that changes
-        // in content do not change the layout size
-        // of the RecyclerView
         recyclerView.setHasFixedSize(true);
         // use a linear layout manager
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        List<String> input = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
-            input.add("Test" + i);
-        }// define an adapter
-        mAdapter = new ListAdapter(input);
+       // define an adapter
+        mAdapter = new ListAdapter(pokemonList);
         recyclerView.setAdapter(mAdapter);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -116,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<RestPokeResponse> call, Response<RestPokeResponse> response) {
                 if (response.isSuccessful() && response.body() != null){
                     List<Pokemon> pokemonList = response.body().getResults();
-                    Toast.makeText(getApplicationContext(), "API success", Toast.LENGTH_SHORT).show();
+                    showList(pokemonList);
                 }else{
                     showError();
                 }
