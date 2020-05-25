@@ -27,4 +27,4 @@ Elle permet grâce à l'API PokéAPI d'affiché différent Pokemon.
 
 ### Second écran
 
-- Affiche des informations sur le pokemon séléctioné.
+- Affiche des informations sur le pokemon sélectioné.
