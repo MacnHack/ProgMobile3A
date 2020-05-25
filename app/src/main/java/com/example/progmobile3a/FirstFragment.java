@@ -11,7 +11,7 @@ import androidx.navigation.fragment.NavHostFragment;
 
 public class FirstFragment extends Fragment {
 
-    @Override
+   /* @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
@@ -30,5 +30,5 @@ public class FirstFragment extends Fragment {
                         .navigate(R.id.action_FirstFragment_to_SecondFragment);
             }
         });
-    }
+    }*/
 }
