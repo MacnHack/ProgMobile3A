@@ -25,6 +25,10 @@ Elle permet grâce à l'API PokéAPI d'affiché différent Pokemon.
 
 - Affichage d'une liste récupérée depuis une API rest
 
+<img src="ProgMobileImg/screen1.png" alt="firstScreen">
+
 ### Second écran
 
 - Affiche des informations sur le pokemon sélectioné.
+
+<img src="ProgMobileImg/screen2.png" alt="secondScreen">
