@@ -1,4 +1,4 @@
-package com.example.progmobile3a;
+package com.example.progmobile3a.presentation.model;
 
 public class Pokemon {
     private String name;

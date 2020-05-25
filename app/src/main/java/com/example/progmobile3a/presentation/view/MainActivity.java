@@ -1,9 +1,14 @@
-package com.example.progmobile3a;
+package com.example.progmobile3a.presentation.view;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import com.example.progmobile3a.Constants;
+import com.example.progmobile3a.R;
+import com.example.progmobile3a.data.PokeApi;
+import com.example.progmobile3a.presentation.model.Pokemon;
+import com.example.progmobile3a.presentation.model.RestPokeResponse;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
@@ -21,7 +26,6 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -62,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
     private List<Pokemon> getDataFromCache() {
 
-        String jsonPokemon = sharedPreferences.getString("jsonPokemonList", null);
+        String jsonPokemon = sharedPreferences.getString(Constants.KEY_POKEMON_LIST, null);
 
         if(jsonPokemon == null){
             return null;
