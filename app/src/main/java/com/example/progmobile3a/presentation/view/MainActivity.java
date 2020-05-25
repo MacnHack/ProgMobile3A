@@ -1,7 +1,9 @@
 package com.example.progmobile3a.presentation.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.progmobile3a.Constants;
 import com.example.progmobile3a.R;
 import com.example.progmobile3a.Singletons;
 import com.example.progmobile3a.presentation.controller.MainController;
@@ -64,7 +66,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void navigateToDetails(Pokemon pokemon) {
-        Toast.makeText(getApplicationContext(), "TODO NAVIGATE", Toast.LENGTH_SHORT).show();
+        Intent myIntent = new Intent(MainActivity.this, DetailActivity.class);
+        myIntent.putExtra(Constants.KEY_POKEMON_DETAIL, Singletons.getGson().toJson(pokemon));
+        MainActivity.this.startActivity(myIntent);
     }
 
     @Override
