@@ -1,21 +1,13 @@
 package com.example.progmobile3a.presentation.view;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import com.example.progmobile3a.Constants;
 import com.example.progmobile3a.R;
 import com.example.progmobile3a.Singletons;
-import com.example.progmobile3a.data.PokeApi;
 import com.example.progmobile3a.presentation.controller.MainController;
 import com.example.progmobile3a.presentation.model.Pokemon;
-import com.example.progmobile3a.presentation.model.RestPokeResponse;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -27,14 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import java.lang.reflect.Type;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -65,24 +50,21 @@ public class MainActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
        // define an adapter
-        mAdapter = new ListAdapter(pokemonList);
-        recyclerView.setAdapter(mAdapter);
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        mAdapter = new ListAdapter(pokemonList, new ListAdapter.OnItemClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onItemClick(Pokemon item) {
+                controller.onItemClick(item);
             }
         });
+        recyclerView.setAdapter(mAdapter);
     }
 
     public void showError() {
         Toast.makeText(getApplicationContext(), "API error", Toast.LENGTH_SHORT).show();
+    }
+
+    public void navigateToDetails(Pokemon pokemon) {
+        Toast.makeText(getApplicationContext(), "TODO NAVIGATE", Toast.LENGTH_SHORT).show();
     }
 
     @Override
