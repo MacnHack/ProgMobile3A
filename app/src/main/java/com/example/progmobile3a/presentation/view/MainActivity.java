@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import com.example.progmobile3a.Constants;
 import com.example.progmobile3a.R;
+import com.example.progmobile3a.Singletons;
 import com.example.progmobile3a.data.PokeApi;
 import com.example.progmobile3a.presentation.controller.MainController;
 import com.example.progmobile3a.presentation.model.Pokemon;
@@ -50,10 +51,8 @@ public class MainActivity extends AppCompatActivity {
 
         controller = new MainController(
                 this,
-              new GsonBuilder()
-                .setLenient()
-                .create(),
-               getSharedPreferences("application_esiea", Context.MODE_PRIVATE)
+                Singletons.getGson(),
+                Singletons.getSharedPreferences(getApplicationContext())
         );
         controller.onStart();
     }

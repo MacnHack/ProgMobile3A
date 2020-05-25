@@ -1,16 +1,13 @@
 package com.example.progmobile3a.presentation.controller;
 
-import android.content.Context;
 import android.content.SharedPreferences;
-import android.widget.Toast;
 
 import com.example.progmobile3a.Constants;
-import com.example.progmobile3a.data.PokeApi;
+import com.example.progmobile3a.Singletons;
 import com.example.progmobile3a.presentation.model.Pokemon;
 import com.example.progmobile3a.presentation.model.RestPokeResponse;
 import com.example.progmobile3a.presentation.view.MainActivity;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
@@ -19,8 +16,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainController {
 
@@ -47,14 +42,7 @@ public class MainController {
 
     private void makeApiCall(){
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
-
-        PokeApi pokeApi = retrofit.create(PokeApi.class);
-
-        Call<RestPokeResponse> call = pokeApi.getPokeResponse();
+        Call<RestPokeResponse> call = Singletons.getPokeApi().getPokeResponse();
         call.enqueue(new Callback<RestPokeResponse>() {
             @Override
             public void onResponse(Call<RestPokeResponse> call, Response<RestPokeResponse> response) {
